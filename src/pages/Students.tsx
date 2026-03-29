@@ -72,12 +72,12 @@ const Students = () => {
         <div className="section-label mb-3">
           <Users size={12} /> Students
         </div>
-        <h1 className="text-[28px] font-bold tracking-[-0.02em] text-[var(--text-primary)]">Students</h1>
+        <h1 className="text-[24px] sm:text-[28px] font-bold tracking-[-0.02em] text-[var(--text-primary)]">Students</h1>
       </motion.div>
 
       {/* Toolbar */}
-      <div className="mb-4 flex flex-wrap items-center gap-3">
-        <div className="relative flex-1 min-w-[200px] max-w-xs">
+      <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center">
+        <div className="relative flex-1 sm:max-w-xs">
           <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--text-muted)]" />
           <input
             className="input-clean pl-9 text-[13px]"
@@ -86,21 +86,23 @@ const Students = () => {
             onChange={e => setSearch(e.target.value)}
           />
         </div>
-        <CustomSelect
-          value={statusFilter}
-          onChange={val => setStatusFilter(val)}
-          options={[
-            { id: 'all', label: 'All Status' },
-            { id: 'active', label: 'Active' },
-            { id: 'probation', label: 'Probation' },
-            { id: 'inactive', label: 'Inactive' }
-          ]}
-          className="w-[140px]"
-        />
+        <div className="flex items-center gap-3">
+          <CustomSelect
+            value={statusFilter}
+            onChange={val => setStatusFilter(val)}
+            options={[
+              { id: 'all', label: 'All Status' },
+              { id: 'active', label: 'Active' },
+              { id: 'probation', label: 'Probation' },
+              { id: 'inactive', label: 'Inactive' }
+            ]}
+            className="flex-1 sm:w-[140px]"
+          />
 
-        <button onClick={() => { closeDrawer(); setDrawerOpen(true); }} className="btn-primary">
-          <Plus size={14} /> Add Student
-        </button>
+          <button onClick={() => { closeDrawer(); setDrawerOpen(true); }} className="btn-primary whitespace-nowrap">
+            <Plus size={14} /> <span className="sm:inline">Add Student</span>
+          </button>
+        </div>
       </div>
 
       {/* Table */}

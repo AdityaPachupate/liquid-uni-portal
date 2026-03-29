@@ -30,12 +30,12 @@ const Faculty = () => {
         <div className="section-label mb-3">
           <GraduationCap size={12} /> Faculty
         </div>
-        <h1 className="text-[28px] font-bold tracking-[-0.02em] text-[var(--text-primary)]">Faculty</h1>
+        <h1 className="text-[24px] sm:text-[28px] font-bold tracking-[-0.02em] text-[var(--text-primary)]">Faculty</h1>
       </motion.div>
 
       {/* Toolbar */}
-      <div className="mb-4 flex flex-wrap items-center gap-3">
-        <div className="relative flex-1 min-w-[200px] max-w-xs">
+      <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center">
+        <div className="relative flex-1 sm:max-w-xs">
           <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--text-muted)]" />
           <input
             className="input-clean pl-9 text-[13px]"
@@ -51,9 +51,8 @@ const Faculty = () => {
             { id: 'all', label: 'All Departments' },
             ...(departments?.map(d => ({ id: d, label: d })) || [])
           ]}
-          className="w-[200px]"
+          className="flex-1 sm:w-[200px]"
         />
-
       </div>
 
       {/* Table */}

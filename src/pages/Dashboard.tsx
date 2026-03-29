@@ -64,17 +64,17 @@ const Dashboard = () => {
       {/* Announcement Banner */}
       {bannerVisible && (
         <motion.div
-          className="mb-6 flex items-center justify-between rounded-lg bg-[var(--accent-orange)] px-3 py-2 md:px-4 md:py-2.5 text-white"
+          className="mb-6 flex items-start sm:items-center justify-between rounded-lg bg-[var(--accent-orange)] px-3 py-2.5 md:px-4 text-white"
           initial={{ opacity: 0, y: -8 }}
           animate={{ opacity: 1, y: 0 }}
         >
-          <span className="text-[12px] md:text-[13px] font-medium leading-tight">
-            📢 Spring 2025 enrollment now open
-            <Link to="/catalogue" className="ml-2 inline-flex items-center gap-1 font-semibold underline">
+          <span className="text-[12px] md:text-[13px] font-medium leading-normal pr-2">
+            📢 <span className="inline-block">Spring 2025 enrollment now open</span>
+            <Link to="/catalogue" className="ml-2 inline-flex items-center gap-1 font-semibold underline whitespace-nowrap">
               View <span className="hidden sm:inline">catalogue</span> <ArrowRight size={13} />
             </Link>
           </span>
-          <button onClick={() => setBannerVisible(false)} className="ml-2 rounded p-0.5 hover:bg-white/20" aria-label="Dismiss">
+          <button onClick={() => setBannerVisible(false)} className="shrink-0 rounded p-0.5 hover:bg-white/20" aria-label="Dismiss">
             <X size={14} />
           </button>
         </motion.div>
@@ -86,7 +86,7 @@ const Dashboard = () => {
           <span className="inline-block h-1.5 w-1.5 rounded-full bg-[var(--accent-green)]" />
           Overview
         </div>
-        <h1 className="text-[24px] md:text-[28px] font-bold tracking-[-0.02em] text-[var(--text-primary)]">Dashboard</h1>
+        <h1 className="text-[24px] sm:text-[28px] font-bold tracking-[-0.02em] text-[var(--text-primary)]">Dashboard</h1>
         <p className="mt-0.5 text-[12px] md:text-[13px] text-[var(--text-secondary)]">
           Welcome back, {user?.name?.split(' ')[0]}. <span className="hidden sm:inline text-[var(--text-muted)]">{dateStr}</span>
         </p>
@@ -101,17 +101,17 @@ const Dashboard = () => {
       </div>
 
       {/* Enrollment Trend Chart */}
-      <div className="mb-6 card-surface p-5">
-        <div className="mb-4 flex items-center justify-between">
+      <div className="mb-6 card-surface p-4 sm:p-5">
+        <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <div className="section-label mb-2">
               📈 Trends
             </div>
             <h2 className="text-[15px] font-bold text-[var(--text-primary)]">Enrollment by Department</h2>
           </div>
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-x-4 gap-y-2">
             {chartKeys.map((k, i) => (
-              <span key={k.key} className="flex items-center gap-1.5 text-[11px] text-[var(--text-secondary)]">
+              <span key={k.key} className="flex items-center gap-1.5 text-[11px] text-[var(--text-secondary)] whitespace-nowrap">
                 <span className="inline-block h-2 w-2 rounded-full" style={{ background: chartColors[i] }} />
                 {k.label}
               </span>
@@ -121,26 +121,28 @@ const Dashboard = () => {
         {trends.isLoading ? (
           <SkeletonShimmer className="h-[250px]" />
         ) : (
-          <ResponsiveContainer width="100%" height={250}>
-            <LineChart data={trends.data}>
-              <XAxis dataKey="month" tick={{ fontSize: 11, fill: 'var(--text-muted)' }} axisLine={false} tickLine={false} />
-              <YAxis tick={{ fontSize: 11, fill: 'var(--text-muted)' }} axisLine={false} tickLine={false} />
-              <Tooltip
-                contentStyle={{
-                  background: 'var(--surface-dark)',
-                  border: 'none',
-                  borderRadius: '8px',
-                  color: 'white',
-                  fontSize: '12px',
-                }}
-                itemStyle={{ color: 'white' }}
-                labelStyle={{ color: 'rgba(255,255,255,0.6)', marginBottom: '4px' }}
-              />
-              {chartKeys.map((k, i) => (
-                <Line key={k.key} type="monotone" dataKey={k.key} stroke={chartColors[i]} strokeWidth={2} dot={false} name={k.label} />
-              ))}
-            </LineChart>
-          </ResponsiveContainer>
+          <div className="h-[250px] w-full mt-2">
+            <ResponsiveContainer width="100%" height="100%">
+              <LineChart data={trends.data} margin={{ left: -20, right: 10 }}>
+                <XAxis dataKey="month" tick={{ fontSize: 10, fill: 'var(--text-muted)' }} axisLine={false} tickLine={false} />
+                <YAxis tick={{ fontSize: 10, fill: 'var(--text-muted)' }} axisLine={false} tickLine={false} />
+                <Tooltip
+                  contentStyle={{
+                    background: 'var(--surface-dark)',
+                    border: 'none',
+                    borderRadius: '8px',
+                    color: 'white',
+                    fontSize: '12px',
+                  }}
+                  itemStyle={{ color: 'white' }}
+                  labelStyle={{ color: 'rgba(255,255,255,0.6)', marginBottom: '4px' }}
+                />
+                {chartKeys.map((k, i) => (
+                  <Line key={k.key} type="monotone" dataKey={k.key} stroke={chartColors[i]} strokeWidth={2} dot={false} name={k.label} />
+                ))}
+              </LineChart>
+            </ResponsiveContainer>
+          </div>
         )}
       </div>
 

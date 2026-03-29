@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { LogOut, GraduationCap, Menu, X } from 'lucide-react';
+import { LogOut, GraduationCap, Menu, X, ArrowRight } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -148,15 +148,20 @@ export const Navbar = () => {
 
               <div className="mt-auto border-t border-[var(--border-subtle)] pt-6">
                 {user && (
-                    <div className="mb-6 flex items-center gap-3 px-4">
+                    <Link 
+                      to="/profile"
+                      onClick={() => setIsMenuOpen(false)}
+                      className="mb-6 flex items-center gap-3 rounded-lg px-4 py-3 transition-colors hover:bg-[var(--page-bg)]"
+                    >
                         <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[var(--accent-orange)] text-[12px] font-bold text-white">
                             {user.name.split(' ').map(n => n[0]).join('').slice(0, 2)}
                         </div>
-                        <div>
-                            <p className="text-[14px] font-bold text-[var(--text-primary)]">{user.name}</p>
-                            <p className="text-[11px] text-[var(--text-muted)]">{user.email}</p>
+                        <div className="flex-1 overflow-hidden">
+                            <p className="truncate text-[14px] font-bold text-[var(--text-primary)]">{user.name}</p>
+                            <p className="truncate text-[11px] text-[var(--text-muted)]">{user.email}</p>
                         </div>
-                    </div>
+                        <ArrowRight size={14} className="text-[var(--text-muted)]" />
+                    </Link>
                 )}
                 <button
                   onClick={logout}

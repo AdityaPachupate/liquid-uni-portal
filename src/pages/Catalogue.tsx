@@ -24,15 +24,15 @@ const Catalogue = () => {
         <div className="section-label mb-3">
           <BookOpen size={12} /> Catalogue
         </div>
-        <h1 className="text-[28px] font-bold tracking-[-0.02em] text-[var(--text-primary)]">Course Catalogue</h1>
-        <p className="mt-0.5 text-[13px] text-[var(--text-secondary)]">Browse all available courses across departments</p>
+        <h1 className="text-[24px] sm:text-[28px] font-bold tracking-[-0.02em] text-[var(--text-primary)]">Course Catalogue</h1>
+        <p className="mt-0.5 text-[12px] md:text-[13px] text-[var(--text-secondary)]">Browse all available courses across departments</p>
       </motion.div>
 
       {/* Filters */}
-      <div className="mb-4 flex flex-wrap gap-2">
+      <div className="mb-4 flex flex-wrap gap-2.5">
         <button
           onClick={() => setDeptFilter('all')}
-          className={`rounded-full border px-3 py-1 text-[12px] font-medium transition-colors ${deptFilter === 'all' ? 'border-[var(--accent-orange)] bg-[var(--tag-orange-bg)] text-[var(--accent-orange)]' : 'border-[var(--border-default)] text-[var(--text-secondary)] hover:bg-[var(--page-bg)]'}`}
+          className={`rounded-full border px-4 py-1.5 text-[12px] font-medium transition-colors ${deptFilter === 'all' ? 'border-[var(--accent-orange)] bg-[var(--tag-orange-bg)] text-[var(--accent-orange)]' : 'border-[var(--border-default)] text-[var(--text-secondary)] hover:bg-[var(--page-bg)]'}`}
         >
           All
         </button>
@@ -40,7 +40,7 @@ const Catalogue = () => {
           <button
             key={d}
             onClick={() => setDeptFilter(d)}
-            className={`rounded-full border px-3 py-1 text-[12px] font-medium transition-colors ${deptFilter === d ? 'border-[var(--accent-orange)] bg-[var(--tag-orange-bg)] text-[var(--accent-orange)]' : 'border-[var(--border-default)] text-[var(--text-secondary)] hover:bg-[var(--page-bg)]'}`}
+            className={`rounded-full border px-4 py-1.5 text-[12px] font-medium transition-colors ${deptFilter === d ? 'border-[var(--accent-orange)] bg-[var(--tag-orange-bg)] text-[var(--accent-orange)]' : 'border-[var(--border-default)] text-[var(--text-secondary)] hover:bg-[var(--page-bg)]'}`}
           >
             {d}
           </button>

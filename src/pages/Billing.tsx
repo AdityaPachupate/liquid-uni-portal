@@ -49,7 +49,7 @@ const Billing = () => {
         <div className="section-label mb-3">
           <Receipt size={12} /> Billing
         </div>
-        <h1 className="text-[28px] font-bold tracking-[-0.02em] text-[var(--text-primary)]">Billing</h1>
+        <h1 className="text-[24px] sm:text-[28px] font-bold tracking-[-0.02em] text-[var(--text-primary)]">Billing</h1>
       </motion.div>
 
       {/* Stat cards */}
@@ -61,8 +61,8 @@ const Billing = () => {
 
 
       {/* Search */}
-      <div className="mb-4 flex items-center gap-3">
-        <div className="relative flex-1 max-w-xs">
+      <div className="mb-4">
+        <div className="relative w-full sm:max-w-xs">
           <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--text-muted)]" />
           <input
             className="input-clean pl-9 text-[13px]"
