@@ -64,17 +64,17 @@ const Dashboard = () => {
       {/* Announcement Banner */}
       {bannerVisible && (
         <motion.div
-          className="mb-6 flex items-center justify-between rounded-lg bg-[var(--accent-orange)] px-4 py-2.5 text-white"
+          className="mb-6 flex items-center justify-between rounded-lg bg-[var(--accent-orange)] px-3 py-2 md:px-4 md:py-2.5 text-white"
           initial={{ opacity: 0, y: -8 }}
           animate={{ opacity: 1, y: 0 }}
         >
-          <span className="text-[13px] font-medium">
-            📢 Spring 2025 enrollment now open — review course catalogue
+          <span className="text-[12px] md:text-[13px] font-medium leading-tight">
+            📢 Spring 2025 enrollment now open
             <Link to="/catalogue" className="ml-2 inline-flex items-center gap-1 font-semibold underline">
-              View catalogue <ArrowRight size={13} />
+              View <span className="hidden sm:inline">catalogue</span> <ArrowRight size={13} />
             </Link>
           </span>
-          <button onClick={() => setBannerVisible(false)} className="ml-4 rounded p-0.5 hover:bg-white/20" aria-label="Dismiss">
+          <button onClick={() => setBannerVisible(false)} className="ml-2 rounded p-0.5 hover:bg-white/20" aria-label="Dismiss">
             <X size={14} />
           </button>
         </motion.div>
@@ -86,9 +86,9 @@ const Dashboard = () => {
           <span className="inline-block h-1.5 w-1.5 rounded-full bg-[var(--accent-green)]" />
           Overview
         </div>
-        <h1 className="text-[28px] font-bold tracking-[-0.02em] text-[var(--text-primary)]">Dashboard</h1>
-        <p className="mt-0.5 text-[13px] text-[var(--text-secondary)]">
-          Welcome back, {user?.name?.split(' ')[0]}. <span className="text-[var(--text-muted)]">{dateStr}</span>
+        <h1 className="text-[24px] md:text-[28px] font-bold tracking-[-0.02em] text-[var(--text-primary)]">Dashboard</h1>
+        <p className="mt-0.5 text-[12px] md:text-[13px] text-[var(--text-secondary)]">
+          Welcome back, {user?.name?.split(' ')[0]}. <span className="hidden sm:inline text-[var(--text-muted)]">{dateStr}</span>
         </p>
       </motion.div>
 
@@ -98,7 +98,6 @@ const Dashboard = () => {
         <StatCard icon={BookOpen} label="Active Courses" value={courses.data ?? '—'} delta={2.10} loading={courses.isLoading} />
         <StatCard icon={GraduationCap} label="Faculty" value={faculty.data ?? '—'} delta={0.00} loading={faculty.isLoading} />
         <StatCard icon={AlertTriangle} label="Overdue Billing" value={overdue.data ?? '—'} delta={-3.40} loading={overdue.isLoading} />
-
       </div>
 
       {/* Enrollment Trend Chart */}

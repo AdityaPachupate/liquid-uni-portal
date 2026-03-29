@@ -89,8 +89,8 @@ const Courses = () => {
       </div>
 
       {/* Toolbar */}
-      <div className="mb-4 flex flex-wrap items-center gap-3">
-        <div className="relative flex-1 min-w-[200px] max-w-xs">
+      <div className="mb-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+        <div className="relative flex-1">
           <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--text-muted)]" />
           <input
             className="input-clean pl-9 text-[13px]"
@@ -99,10 +99,9 @@ const Courses = () => {
             onChange={e => setSearch(e.target.value)}
           />
         </div>
-        <button onClick={() => { closeDrawer(); setDrawerOpen(true); }} className="btn-primary">
+        <button onClick={() => { closeDrawer(); setDrawerOpen(true); }} className="btn-primary w-full sm:w-auto justify-center">
           <Plus size={14} /> New Course
         </button>
-
       </div>
 
       {/* Table */}
