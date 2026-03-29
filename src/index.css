@@ -334,7 +334,7 @@
   .moving-gradient {
     background: linear-gradient(-45deg, #F4571B, #ffffff, #fff1eb, #ffffff);
     background-size: 400% 400%;
-    animation: moving-gradient-anim 15s ease infinite;
+    animation: moving-gradient-anim 6s ease infinite;
   }
 
   @keyframes moving-gradient-anim {
@@ -349,7 +349,7 @@
   }
 
   .liquid-glass {
-    background: rgba(255, 255, 255, 0.85);
+    background: rgba(255, 255, 255, 0.70);
     backdrop-filter: blur(24px) saturate(180%);
     -webkit-backdrop-filter: blur(24px) saturate(180%);
     border-radius: 32px;

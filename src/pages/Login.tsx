@@ -36,101 +36,119 @@ const Login = () => {
   return (
     <div className="moving-gradient flex min-h-screen items-center justify-center relative overflow-hidden p-6">
       <motion.div
-        className="w-full max-w-[420px]"
+        className="w-full max-w-[850px]"
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.25 }}
       >
-        <div className="liquid-glass p-8 md:p-10">
-          {/* Header Section */}
-          <div className="flex flex-col items-center text-center mb-8">
-            <div className="login-icon-box text-[var(--accent-orange)]">
-              <GraduationCap size={24} />
-            </div>
-            <h1 className="text-[24px] font-bold text-[var(--text-primary)] mb-2">Sign in with email</h1>
-            <p className="text-[14px] text-[var(--text-secondary)] leading-relaxed max-w-[280px]">
-              Access your university portal to manage courses, students, and finances.
-            </p>
-          </div>
+        <div className="relative">
+          <div className="liquid-glass p-8 md:p-12 relative z-10 overflow-hidden min-h-[500px] flex flex-col justify-center">
+            {/* Layer 0: Card Background (Implicit in liquid-glass) */}
 
-          {error && (
-            <div className="mb-6 rounded-lg border-l-4 border-[var(--accent-red)] bg-red-50 p-3 text-[13px] text-[var(--accent-red)]">
-              {error}
-            </div>
-          )}
-
-          <form onSubmit={handleSubmit} className="space-y-4">
-            {/* Email Input */}
-            <div className="icon-input-group">
-              <Mail className="input-icon" />
-              <input
-                type="email"
-                placeholder="Email address"
-                value={email}
-                onChange={e => setEmail(e.target.value)}
-                required
-              />
-            </div>
-
-            {/* Password Input */}
-            <div className="space-y-2">
-              <div className="icon-input-group">
-                <Lock className="input-icon" />
-                <input
-                  type={showPassword ? "text" : "password"}
-                  placeholder="Password"
-                  value={password}
-                  onChange={e => setPassword(e.target.value)}
-                  required
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
-                >
-                  {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
-                </button>
-              </div>
-              <div className="flex justify-end">
-                <button type="button" className="text-[13px] font-medium text-[var(--text-secondary)] hover:text-[var(--accent-orange)] transition-colors">
-                  Forgot password?
-                </button>
-              </div>
-            </div>
-
-            <button
-              type="submit"
-              disabled={isLoading}
-              className="btn-primary flex w-full h-[48px] items-center justify-center gap-2 rounded-xl text-[15px] font-semibold transition-transform active:scale-[0.98]"
+            {/* Layer 1: Middle Image (z-10) */}
+            <motion.div
+              className="absolute -right-32 -bottom-20 w-[600px] pointer-events-none z-10"
+              initial={{ opacity: 0, scale: 0.9, x: 40 }}
+              animate={{ opacity: 1, scale: 1, x: 0 }}
+              transition={{ delay: 0.2, duration: 0.6, ease: "easeOut" }}
             >
-              {isLoading ? <Loader2 size={18} className="animate-spin" /> : null}
-              {isLoading ? 'Signing in...' : 'Sign In'}
-            </button>
-          </form>
+              <img 
+                src="/philosopher.png" 
+                alt="Scholar" 
+                className="w-full h-auto object-contain opacity-90 md:opacity-95"
+              />
+            </motion.div>
 
-          {/* Divider */}
-          <div className="login-divider">
-            <span>Or sign in with</span>
-          </div>
+            {/* Layer 2: Interactive Content (z-20) */}
+            <div className="relative z-20 max-w-[340px]">
+              {/* Header Section */}
+              <div className="flex flex-col items-start text-left mb-8">
+                <div className="login-icon-box text-[var(--accent-orange)]">
+                  <GraduationCap size={24} />
+                </div>
+                <h1 className="text-[28px] font-bold text-[var(--text-primary)] mb-2">Sign in to Portal</h1>
+                <p className="text-[15px] text-[var(--text-secondary)] leading-relaxed">
+                  Enter your university credentials to manage your academic profile.
+                </p>
+              </div>
 
-          {/* Social Social Buttons */}
-          <div className="social-grid">
-            <button className="social-btn" title="Google">
-              <Chrome size={20} />
-            </button>
-            <button className="social-btn" title="Facebook">
-              <Facebook size={20} />
-            </button>
-            <button className="social-btn" title="Apple">
-              <Apple size={20} />
-            </button>
+              {error && (
+                <div className="mb-6 rounded-lg border-l-4 border-[var(--accent-red)] bg-red-50 p-3 text-[13px] text-[var(--accent-red)]">
+                  {error}
+                </div>
+              )}
+
+              <form onSubmit={handleSubmit} className="space-y-5">
+                {/* Email Input */}
+                <div className="icon-input-group">
+                  <Mail className="input-icon" />
+                  <input
+                    type="email"
+                    placeholder="Email address"
+                    value={email}
+                    onChange={e => setEmail(e.target.value)}
+                    required
+                  />
+                </div>
+
+                {/* Password Input */}
+                <div className="space-y-2">
+                  <div className="icon-input-group">
+                    <Lock className="input-icon" />
+                    <input
+                      type={showPassword ? "text" : "password"}
+                      placeholder="Password"
+                      value={password}
+                      onChange={e => setPassword(e.target.value)}
+                      required
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword(!showPassword)}
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
+                    >
+                      {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                    </button>
+                  </div>
+                  <div className="flex justify-end">
+                    <button type="button" className="text-[13px] font-medium text-[var(--text-secondary)] hover:text-[var(--accent-orange)] transition-colors">
+                      Forgot password?
+                    </button>
+                  </div>
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={isLoading}
+                  className="btn-primary flex h-[50px] px-8 items-center justify-center gap-2 rounded-xl text-[16px] font-bold transition-transform active:scale-[0.98] w-full"
+                >
+                  {isLoading ? <Loader2 size={18} className="animate-spin" /> : null}
+                  {isLoading ? 'Signing in...' : 'Sign In'}
+                </button>
+              </form>
+
+              {/* Divider */}
+              <div className="login-divider">
+                <span>Or login with</span>
+              </div>
+
+              {/* Social Social Buttons */}
+              <div className="social-grid">
+                <button className="social-btn" title="Google">
+                  <Chrome size={20} />
+                </button>
+                <button className="social-btn" title="Facebook">
+                  <Facebook size={20} />
+                </button>
+                <button className="social-btn" title="Apple">
+                  <Apple size={20} />
+                </button>
+              </div>
+            </div>
           </div>
         </div>
 
-        <p className="mt-8 text-center text-[13px] text-[var(--text-secondary)]">
-          Don't have an account?{' '}
-          <span className="cursor-pointer font-semibold text-[var(--accent-orange)] hover:underline">Talk to Sales</span>
-        </p>
+        {/* Footer Removed */}
       </motion.div>
     </div>
   );
