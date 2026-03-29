@@ -35,6 +35,7 @@ const Login = () => {
 
   return (
     <div className="moving-gradient flex min-h-screen items-center justify-center relative overflow-hidden p-6">
+      <div className="grain-overlay" />
       <motion.div
         className="w-full max-w-[850px]"
         initial={{ opacity: 0, y: 12 }}
@@ -44,10 +45,10 @@ const Login = () => {
         <div className="relative">
           <div className="liquid-glass p-8 md:p-12 relative z-10 overflow-hidden min-h-[500px] flex flex-col justify-center">
             {/* Layer 0: Card Background (Implicit in liquid-glass) */}
-
+ 
             {/* Layer 1: Middle Image (z-10) */}
             <motion.div
-              className="absolute -right-32 -bottom-20 w-[600px] pointer-events-none z-10"
+              className="absolute -right-32 -bottom-32 w-[600px] pointer-events-none z-10"
               initial={{ opacity: 0, scale: 0.9, x: 40 }}
               animate={{ opacity: 1, scale: 1, x: 0 }}
               transition={{ delay: 0.2, duration: 0.6, ease: "easeOut" }}
@@ -55,7 +56,7 @@ const Login = () => {
               <img 
                 src="/philosopher.png" 
                 alt="Scholar" 
-                className="w-full h-auto object-contain opacity-90 md:opacity-95"
+                className="w-full h-auto object-contain opacity-20 md:opacity-90"
               />
             </motion.div>
 
@@ -67,7 +68,7 @@ const Login = () => {
                   <GraduationCap size={24} />
                 </div>
                 <h1 className="text-[28px] font-bold text-[var(--text-primary)] mb-2">Sign in to Portal</h1>
-                <p className="text-[15px] text-[var(--text-secondary)] leading-relaxed">
+                <p className="text-[15px] text-[var(--text-primary)] opacity-70 leading-relaxed">
                   Enter your university credentials to manage your academic profile.
                 </p>
               </div>
@@ -110,8 +111,8 @@ const Login = () => {
                       {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                     </button>
                   </div>
-                  <div className="flex justify-end">
-                    <button type="button" className="text-[13px] font-medium text-[var(--text-secondary)] hover:text-[var(--accent-orange)] transition-colors">
+                  <div className="flex justify-start">
+                    <button type="button" className="text-[13px] font-medium text-[var(--text-primary)] opacity-70 hover:opacity-100 hover:text-[var(--accent-orange)] transition-all">
                       Forgot password?
                     </button>
                   </div>
