@@ -1,0 +1,341 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Shadcn semantic tokens — HSL */
+    --background: 240 4% 97%;
+    --foreground: 0 0% 6%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 6%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 6%;
+    --primary: 16 91% 53%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 9% 96%;
+    --secondary-foreground: 0 0% 6%;
+    --muted: 220 9% 96%;
+    --muted-foreground: 220 9% 46%;
+    --accent: 220 9% 96%;
+    --accent-foreground: 0 0% 6%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 16 91% 53%;
+    --radius: 0.625rem;
+
+    /* Canvas */
+    --page-bg: #F7F7F8;
+    --surface-card: #FFFFFF;
+    --surface-panel: #FFFFFF;
+    --surface-dark: #0F0F0F;
+
+    /* Borders */
+    --border-default: #E5E5E5;
+    --border-subtle: #F0F0F0;
+
+    /* Brand */
+    --accent-orange: #F4571B;
+    --accent-blue: #4A7CF7;
+    --accent-green: #22C55E;
+    --accent-red: #EF4444;
+
+    /* Text */
+    --text-primary: #0F0F0F;
+    --text-secondary: #6B7280;
+    --text-muted: #9CA3AF;
+    --text-inverse: #FFFFFF;
+
+    /* Chart palette */
+    --chart-1: #F97316;
+    --chart-2: #3B82F6;
+    --chart-3: #8B5CF6;
+    --chart-4: #10B981;
+    --chart-5: #F43F5E;
+
+    /* Tags / Badges */
+    --tag-blue-bg: rgba(74, 124, 247, 0.12);
+    --tag-blue-text: #4A7CF7;
+    --tag-orange-bg: rgba(244, 87, 27, 0.12);
+    --tag-orange-text: #F4571B;
+    --tag-green-bg: rgba(34, 197, 94, 0.12);
+    --tag-green-text: #16A34A;
+    --tag-red-bg: rgba(239, 68, 68, 0.12);
+    --tag-red-text: #EF4444;
+    --tag-purple-bg: rgba(139, 92, 246, 0.12);
+    --tag-purple-text: #8B5CF6;
+
+    /* Spacing */
+    --card-radius: 10px;
+    --card-padding: 20px;
+    --card-gap: 12px;
+
+    /* Sidebar */
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 220 9% 46%;
+    --sidebar-primary: 16 91% 53%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 9% 96%;
+    --sidebar-accent-foreground: 0 0% 6%;
+    --sidebar-border: 0 0% 90%;
+    --sidebar-ring: 16 91% 53%;
+  }
+
+  * {
+    @apply border-border;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', system-ui, sans-serif;
+    letter-spacing: -0.01em;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-weight: 700;
+  }
+}
+
+@layer components {
+  /* Clean card — NO shadows, NO blur */
+  .card-surface {
+    background: var(--surface-card);
+    border: 1px solid var(--border-default);
+    border-radius: var(--card-radius);
+  }
+
+  /* Section pill label */
+  .section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    border: 1px solid var(--border-default);
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    background: var(--surface-card);
+  }
+
+  /* Tag / badge pill */
+  .tag-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+
+  .tag-blue { background: var(--tag-blue-bg); color: var(--tag-blue-text); }
+  .tag-orange { background: var(--tag-orange-bg); color: var(--tag-orange-text); }
+  .tag-green { background: var(--tag-green-bg); color: var(--tag-green-text); }
+  .tag-red { background: var(--tag-red-bg); color: var(--tag-red-text); }
+  .tag-purple { background: var(--tag-purple-bg); color: var(--tag-purple-text); }
+
+  /* CTA button — orange filled */
+  .btn-primary {
+    background: var(--accent-orange);
+    color: white;
+    height: 44px !important;
+    border-radius: 14px;
+    font-weight: 600;
+    font-size: 13.5px;
+    padding: 0 24px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 14px -2px rgba(244, 87, 27, 0.3);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    box-sizing: border-box;
+    cursor: pointer;
+    letter-spacing: -0.01em;
+  }
+  .btn-primary:hover {
+    background: var(--accent-orange);
+    opacity: 0.95;
+    transform: scale(1.02);
+    box-shadow: 0 6px 20px -2px rgba(244, 87, 27, 0.4);
+  }
+  .btn-primary:active {
+    transform: scale(0.96);
+    opacity: 0.9;
+  }
+
+
+
+  .btn-primary:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  /* Ghost button */
+  .btn-ghost {
+    background: transparent;
+    border: 1px solid var(--border-default);
+    color: var(--text-secondary);
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 13px;
+    padding: 8px 16px;
+    transition: background 150ms ease, color 150ms ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .btn-ghost:hover {
+    background: var(--page-bg);
+    color: var(--text-primary);
+  }
+
+  /* Clean input */
+  .input-clean {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 13px;
+    padding: 10px 12px;
+    border: 1px solid var(--border-default);
+    border-radius: var(--card-radius);
+    background: var(--surface-card);
+    width: 100%;
+    outline: none;
+    color: var(--text-primary);
+    transition: border-color 150ms ease;
+  }
+  .input-clean::placeholder {
+    color: var(--text-muted);
+  }
+  .input-clean:focus {
+    border-color: var(--accent-orange);
+    box-shadow: 0 0 0 3px rgba(244, 87, 27, 0.08);
+  }
+
+  /* Dropdown UI improvements */
+  select.input-clean {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='%239CA3AF' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m3 5 3 3 3-3'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 32px;
+  }
+
+
+  /* Table styles */
+  .table-header {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .table-row-alt:nth-child(even) {
+    background: #FAFAFA;
+  }
+  .table-row-hover:hover {
+    background: #F5F5F5;
+  }
+
+  /* Shimmer skeleton */
+  .shimmer {
+    background: linear-gradient(90deg, #F0F0F0 25%, #E5E5E5 50%, #F0F0F0 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+
+  @keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+
+  /* Stagger animation */
+  @keyframes staggerFadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Floating label input */
+  .floating-label-group {
+    position: relative;
+  }
+  .floating-label-group input {
+    width: 100%;
+    margin-bottom: 2px;
+  }
+  .floating-label-group input,
+  .floating-label-group button.input-clean {
+    width: 100%;
+    height: 48px; /* Form elements stay slightly taller for floating labels */
+    padding: 12px;
+    padding-top: 20px;
+    font-size: 14px;
+    border: 1px solid var(--border-default);
+    border-radius: 12px;
+    background: white;
+    transition: all 150ms ease;
+    display: flex;
+    align-items: center;
+  }
+
+  .floating-label-group label {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 14px;
+    color: var(--text-muted);
+    pointer-events: none;
+    transition: all 150ms ease;
+    font-family: 'Inter', system-ui, sans-serif;
+    background: transparent;
+    padding: 0;
+    z-index: 5;
+  }
+  .floating-label-group input:focus ~ label,
+  .floating-label-group input:not(:placeholder-shown) ~ label,
+  .floating-label-group button[data-has-value="true"] ~ label,
+  .floating-label-group button:focus ~ label {
+    top: -9px;
+    transform: translateY(0);
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--accent-orange);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    background: white;
+    padding: 0 6px;
+    left: 10px;
+    z-index: 10;
+  }
+
+
+
+  /* Make placeholder behavior cleaner */
+  .floating-label-group input::placeholder {
+    color: transparent;
+  }
+  .floating-label-group input:focus::placeholder {
+    color: var(--text-muted);
+  }
+
+}
+
+@media print {
+  .no-print { display: none !important; }
+  .card-surface {
+    background: white !important;
+    border: 1px solid #ddd !important;
+  }
+}
